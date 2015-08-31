@@ -12,5 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+Route::get('/fresh', "FreshController@index");
+Route::get('/fresh/currentStatus', "FreshController@returnStatus");
+Route::post('/fresh/signUp', "FreshController@signUp");

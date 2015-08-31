@@ -1,0 +1,87 @@
+/* line 14, ../../resources/assets/main/sass/main.scss */
+html, body {
+  height: 100%;
+  width: 100%;
+  color: black;
+}
+
+/* line 21, ../../resources/assets/main/sass/main.scss */
+#titleBox {
+  min-height: 360px;
+  width: 100%;
+  height: 50%;
+  position: relative;
+  color: white;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+  background: url(/images/title.jpg) no-repeat center center fixed;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+}
+/* line 31, ../../resources/assets/main/sass/main.scss */
+#titleBox .center {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 220px;
+  margin-top: -110px;
+}
+@media screen and (min-width: 1200px) {
+  /* line 31, ../../resources/assets/main/sass/main.scss */
+  #titleBox .center {
+    width: 1170px;
+    margin-left: -585px;
+  }
+  /* line 42, ../../resources/assets/main/sass/main.scss */
+  #titleBox .center h1 br {
+    display: none;
+  }
+}
+@media screen and (min-width: 992px) {
+  /* line 31, ../../resources/assets/main/sass/main.scss */
+  #titleBox .center {
+    width: 970px;
+    margin-left: -485px;
+  }
+  /* line 50, ../../resources/assets/main/sass/main.scss */
+  #titleBox .center h1 br {
+    display: none;
+  }
+}
+@media screen and (min-width: 758px) {
+  /* line 31, ../../resources/assets/main/sass/main.scss */
+  #titleBox .center {
+    width: 750px;
+    margin-left: -375px;
+  }
+  /* line 58, ../../resources/assets/main/sass/main.scss */
+  #titleBox .center h1 br {
+    display: none;
+  }
+}
+@media screen and (max-width: 768px) {
+  /* line 31, ../../resources/assets/main/sass/main.scss */
+  #titleBox .center {
+    width: 80%;
+    margin-left: -40%;
+  }
+  /* line 66, ../../resources/assets/main/sass/main.scss */
+  #titleBox .center h1 br {
+    display: block;
+  }
+}
+
+/* line 73, ../../resources/assets/main/sass/main.scss */
+#infoBox {
+  height: 25%;
+  min-height: 180px;
+}
+
+/* line 79, ../../resources/assets/main/sass/main.scss */
+#functionBox .btn {
+  width: 100%;
+  color: #F44336;
+}

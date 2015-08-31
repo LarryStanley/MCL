@@ -3,3 +3,9 @@
 Homestead.yaml
 Homestead.json
 .env
+
+*.scssc
+
+config/database.php
+
+config/database.php
