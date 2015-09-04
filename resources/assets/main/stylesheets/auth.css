@@ -1,0 +1,69 @@
+/* line 14, ../sass/auth.scss */
+html, body {
+  background-color: #455A64;
+  height: 100%;
+  width: 100%;
+  color: white;
+}
+
+/* line 22, ../sass/auth.scss */
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 520px;
+  margin-top: -260px;
+}
+@media screen and (min-width: 1200px) {
+  /* line 22, ../sass/auth.scss */
+  .center {
+    width: 1170px;
+    margin-left: -585px;
+  }
+  /* line 32, ../sass/auth.scss */
+  .center h1 br {
+    display: none;
+  }
+}
+@media screen and (min-width: 992px) {
+  /* line 22, ../sass/auth.scss */
+  .center {
+    width: 970px;
+    margin-left: -485px;
+  }
+  /* line 40, ../sass/auth.scss */
+  .center h1 br {
+    display: none;
+  }
+}
+@media screen and (min-width: 758px) {
+  /* line 22, ../sass/auth.scss */
+  .center {
+    width: 750px;
+    margin-left: -375px;
+  }
+  /* line 48, ../sass/auth.scss */
+  .center h1 br {
+    display: none;
+  }
+}
+@media screen and (max-width: 768px) {
+  /* line 22, ../sass/auth.scss */
+  .center {
+    width: 80%;
+    margin-left: -40%;
+  }
+  /* line 56, ../sass/auth.scss */
+  .center h1 br {
+    display: block;
+  }
+}
+/* line 61, ../sass/auth.scss */
+.center button .btn {
+  color: #F44336 !important;
+}
+
+/* line 66, ../sass/auth.scss */
+.well {
+  padding: 20px 20px 20px 20px;
+}

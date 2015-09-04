@@ -2,7 +2,7 @@
 <html lang="zh-tw">
 <head>
 	<meta charset="UTF-8">
-	<title>中央數學計算實驗室</title>
+	<title><?php if(!empty($title)) echo $title." - ";?>中央數學計算實驗室</title>
 
 	<meta name="_token" content="{!! csrf_token() !!}"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">

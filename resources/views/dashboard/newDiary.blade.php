@@ -1,0 +1,19 @@
+@extends("dashboard/dashboardLayout")
+
+@section("dashboardContent")
+	<h1>新增日誌</h1>
+	<hr>
+	<form action="/dashboard/workerDiary/new" method="POST">
+        {!! csrf_field() !!}
+		<div class="form-group">
+			<label>主旨</label>
+			<input type="text" class="form-control" name="name" value="<?php if(!empty($diary->name)) echo $diary->name;?>">
+		</div>
+		<div class="form-group">
+			<label>內容</label>
+			<textarea class="form-control" rows="15" name="content"><?php if(!empty($diary->content)) echo $diary->content;?></textarea>			
+		</div>
+		<input type="hidden" value="<?php if(!empty($diary->id)) echo $diary->id;?>" name="id">
+		<input type="submit" class="btn btn-default pull-right" value="送出">
+	</form>
+@stop

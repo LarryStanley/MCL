@@ -1,0 +1,62 @@
+@import "compass/css3";
+@import "compass/typography/links/link-colors";
+@import "compass/typography/links/hover-link";
+
+$large: 1200px;
+$medium: 992px;
+$small: 758px;
+$xsmall: 768px;
+
+$largeWidth: 1170px;
+$mediumWidth: 970px;
+$smallWidth: 750px;
+
+$textColor: white;
+
+html, body {
+	@include background-size(cover);
+	background: url(/images/dashboard.jpg) no-repeat center center fixed; 
+	height: 100%;
+	width: 100%;
+	color: $textColor;
+}
+
+.well{
+	margin-top: 20px;
+	padding: 0px 20px 0px 0px !important;
+
+	.col-md-3 {
+		background-color: #607D8B;
+		overflow: auto;
+		color: white;
+		margin: 0px 0px 0px 0px;
+		padding: 0px 0px 0px 0px;
+		ul {
+			margin: 0px 0px 0px 0px;
+		}
+		li {
+			a { 
+				@include link-colors(white, black, white, white, white);
+			}
+
+			a:hover {
+				@include border-radius(0px);
+			}
+		}
+
+		label {
+			padding: 5px 5px 5px 5px;
+			color: #03A9F4;
+		}
+	}
+
+	.row [class*="col-"]{
+	  margin-bottom: -99999px;
+	  padding-bottom: 99999px;
+	}
+
+	.row{
+	  overflow: hidden; 
+	}
+
+}

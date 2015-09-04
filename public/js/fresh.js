@@ -9,6 +9,11 @@ angular.module('freshApp', [])
 				$scope.message = "您已經曠課囉，下次請早點來！";
 				$scope.$apply();
 				$("#signUpButton").remove();
+			} else if (data.status === "signed") {
+				var signTime = data.signTime.split(" ");
+				$scope.message = "您已於" + signTime[1] + "簽到";
+				$scope.$apply();
+				$("#signUpButton").remove();
 			} else {
 				var currentTime = data.currentTime.split(":");
 				if (data.status === "late") {
@@ -41,10 +46,13 @@ angular.module('freshApp', [])
 		});
 
 		this.signUp = function() {
-			$.post('/fresh/signUp', function(data) {
+			$.post('/fresh/signUp', {"_token" : $("#token").val()})
+				.done( function(data) {
 				console.log(data);
 				clearInterval(timer);
-				$scope.message = "您已簽到";
+				var signTime = data.signTime.split(" ");
+				$scope.message = "您已於" + signTime[1] + "簽到";
+				$scope.$apply();
 				$("#signUpButton").remove();
 			});
 		}

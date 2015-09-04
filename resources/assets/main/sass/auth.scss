@@ -1,0 +1,68 @@
+@import "compass/css3";
+
+$large: 1200px;
+$medium: 992px;
+$small: 758px;
+$xsmall: 768px;
+
+$largeWidth: 1170px;
+$mediumWidth: 970px;
+$smallWidth: 750px;
+
+$textColor: white;
+
+html, body {
+	background-color: #455A64;
+	height: 100%;
+	width: 100%;
+	color: $textColor;
+}
+
+$centerHeight: 520px;
+.center {
+	position: absolute;
+	top:50%;
+	left: 50%;
+	height: $centerHeight;
+	margin-top: -($centerHeight/2);
+	
+	@media screen and(min-width: $large) {
+		width: $largeWidth;
+		margin-left: -($largeWidth/2);
+		h1 br {
+			display: none;
+		}
+	}
+
+	@media screen and(min-width: $medium) {
+		width: $mediumWidth;
+		margin-left: -($mediumWidth/2);
+		h1 br {
+			display: none;
+		}
+	}
+
+	@media screen and(min-width: $small) {
+		width: $smallWidth;
+		margin-left: -($smallWidth/2);
+		h1 br {
+			display: none;
+		}
+	}
+
+	@media screen and(max-width: $xsmall) {
+		width: 80%;
+		margin-left: -40%;
+		h1 br {
+			display: block;
+		}
+	}
+
+	button .btn {
+		color: #F44336 !important;
+	}
+}
+
+.well {
+	padding: 20px 20px 20px 20px;
+}

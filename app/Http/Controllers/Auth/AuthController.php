@@ -28,6 +28,10 @@ class AuthController extends Controller
      *
      * @return void
      */
+
+    protected $redirectPath = '/dashboard';
+    protected $loginPath = '/login';
+
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'getLogout']);
