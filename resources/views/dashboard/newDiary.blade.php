@@ -16,4 +16,7 @@
 		<input type="hidden" value="<?php if(!empty($diary->id)) echo $diary->id;?>" name="id">
 		<input type="submit" class="btn btn-default pull-right" value="送出">
 	</form>
+	<div>
+		日誌支援Markdown語法，Markdown使用方式可參考<a href="http://markdown.tw/" target="_blank">Markdown 語法說明</a>
+	</div>
 @stop
