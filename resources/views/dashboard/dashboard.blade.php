@@ -6,7 +6,7 @@
 	<h2>公告</h2>
 	<hr>
 	<ul>
-		<?php 
+		<?php
 			$announcement = DB::table("announcement")->where("show", true)->get();
 			$announcement = array_reverse($announcement);
 			foreach ($announcement as $key => $value) {
