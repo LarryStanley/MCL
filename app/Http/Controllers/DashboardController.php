@@ -195,4 +195,8 @@ class DashboardController extends Controller
 	public function freshResult() {
 		return view('/dashboard/result');
 	}
+
+	public function freshTime() {
+		return view('/dashboard/time');
+	}
 }
