@@ -191,4 +191,8 @@ class DashboardController extends Controller
 
 		return redirect("/dashboard/changeUserGroup/".Input::get('id'));
 	}
+
+	public function freshResult() {
+		return view('/dashboard/result');
+	}
 }

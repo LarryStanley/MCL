@@ -17,8 +17,7 @@
 							echo '
 							<li><label for="">工讀生專區</label></li>
 							<li><a href="/dashboard/workerDiary/new">新增日誌</a></li>
-							<li><a href="/dashboard/workerDiary">工讀生日誌</a></li>
-							<li><a href="/dashboard/announcement">新增公告</a></li>';
+							<li><a href="/dashboard/workerDiary">工讀生日誌</a></li>';
 							echo "<li><label>MCL相關文件</label></li>";
 							$data = DB::table("documents")->get();
 							foreach ($data as $key => $value) {
@@ -39,8 +38,9 @@
 						$group = DB::table("users_group")->where("group_name", "admin")->where("user_id", Auth::user()->id)->first();
 						if ($group) {
 							echo '
-							<li><label for="">勞服管理</label></li>
+							<li><label for="">管理、設定</label></li>
 							<li><label>使用者管理</label></li>
+							<li><a href="/dashboard/announcement">新增公告</a></li>
 							<li><a href="/dashboard/changeUserGroup">使用者權限</a></li>';		
 						}
 					?>

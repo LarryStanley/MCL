@@ -14,6 +14,11 @@
 Route::get('/', function () {
     return view('index');
 });
+
+Route::get('/home', function () {
+	return redirect('/dashboard');
+});
+
 Route::get('/fresh', "FreshController@index");
 Route::get('/fresh/currentStatus', "FreshController@returnStatus");
 Route::post('/fresh/signUp', "FreshController@signUp");
@@ -46,6 +51,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function() {
 	Route::post('/newComputer', "DashboardController@newComputer");
 	Route::get('/uploadDriver', "DashboardController@showUploadDriver");
 	Route::post('/uploadDriver', "DashboardController@uploadDriver");
+
+	Route::get('/result', "DashboardController@freshResult");
+	Route::get('/time', "DashboardController@freshTime");
 
 });
 

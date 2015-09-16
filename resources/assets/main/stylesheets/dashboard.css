@@ -8,14 +8,15 @@ html, body {
   height: 100%;
   width: 100%;
   color: white;
+  font-size: 16px;
 }
 
-/* line 24, ../sass/dashboard.scss */
+/* line 25, ../sass/dashboard.scss */
 .well {
   margin-top: 20px;
   padding: 0px 20px 0px 0px !important;
 }
-/* line 28, ../sass/dashboard.scss */
+/* line 29, ../sass/dashboard.scss */
 .well .col-md-3 {
   background-color: #607D8B;
   overflow: auto;
@@ -23,47 +24,68 @@ html, body {
   margin: 0px 0px 0px 0px;
   padding: 0px 0px 0px 0px;
 }
-/* line 34, ../sass/dashboard.scss */
+/* line 35, ../sass/dashboard.scss */
 .well .col-md-3 ul {
   margin: 0px 0px 0px 0px;
 }
-/* line 38, ../sass/dashboard.scss */
+/* line 39, ../sass/dashboard.scss */
 .well .col-md-3 li a {
   color: white;
 }
-/* line 18, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/typography/links/_link-colors.scss */
+/* line 18, ../../../../../../../../usr/local/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/typography/links/_link-colors.scss */
 .well .col-md-3 li a:visited {
   color: white;
 }
-/* line 21, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/typography/links/_link-colors.scss */
+/* line 21, ../../../../../../../../usr/local/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/typography/links/_link-colors.scss */
 .well .col-md-3 li a:focus {
   color: white;
 }
-/* line 24, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/typography/links/_link-colors.scss */
+/* line 24, ../../../../../../../../usr/local/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/typography/links/_link-colors.scss */
 .well .col-md-3 li a:hover {
   color: black;
 }
-/* line 27, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/typography/links/_link-colors.scss */
+/* line 27, ../../../../../../../../usr/local/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/typography/links/_link-colors.scss */
 .well .col-md-3 li a:active {
   color: white;
 }
-/* line 42, ../sass/dashboard.scss */
+/* line 43, ../sass/dashboard.scss */
 .well .col-md-3 li a:hover {
   -moz-border-radius: 0px;
   -webkit-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 47, ../sass/dashboard.scss */
+/* line 48, ../sass/dashboard.scss */
 .well .col-md-3 label {
   padding: 5px 5px 5px 5px;
   color: #03A9F4;
 }
-/* line 53, ../sass/dashboard.scss */
+/* line 54, ../sass/dashboard.scss */
 .well .row [class*="col-"] {
   margin-bottom: -99999px;
   padding-bottom: 99999px;
 }
-/* line 58, ../sass/dashboard.scss */
+/* line 59, ../sass/dashboard.scss */
 .well .row {
   overflow: hidden;
+}
+
+/* line 66, ../sass/dashboard.scss */
+.diaryList a {
+  color: #263238;
+}
+/* line 18, ../../../../../../../../usr/local/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/typography/links/_link-colors.scss */
+.diaryList a:visited {
+  color: #263238;
+}
+/* line 21, ../../../../../../../../usr/local/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/typography/links/_link-colors.scss */
+.diaryList a:focus {
+  color: #263238;
+}
+/* line 24, ../../../../../../../../usr/local/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/typography/links/_link-colors.scss */
+.diaryList a:hover {
+  color: #263238;
+}
+/* line 27, ../../../../../../../../usr/local/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/typography/links/_link-colors.scss */
+.diaryList a:active {
+  color: #263238;
 }
