@@ -4,6 +4,7 @@ use DB;
 use App\User;
 use App\Http\Controllers\Controller;
 use Input;
+use Auth;
 use Session;
 
 class FreshController extends Controller
@@ -58,7 +59,19 @@ class FreshController extends Controller
 		return response()->json(["status" => $status, "signTime" => date('H:i:s', time())]);
 	}
 
-	public function test() {
-		echo "TEST";
+	public function recordWill() {
+		$wills = Input::get('will');
+		$wills = json_decode($wills, true);
+		$results = array();
+
+		DB::table('fresh_will')->where('user_id', Auth::user()->id)->delete();
+
+		foreach ($wills as $key => $value) {
+			array_push($results, ["select_class" => $value, "user_id" => Auth::user()->id]);
+		}
+
+		DB::table('fresh_will')->insert($results);
+
+		return "success";
 	}
 }

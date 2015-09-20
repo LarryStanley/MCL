@@ -22,6 +22,7 @@ Route::get('/home', function () {
 Route::get('/fresh', "FreshController@index");
 Route::get('/fresh/currentStatus', "FreshController@returnStatus");
 Route::post('/fresh/signUp', "FreshController@signUp");
+Route::post('/fresh/receiveWill', "FreshController@recordWill");
 
 Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function() {
 
