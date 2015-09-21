@@ -4,19 +4,28 @@ html, body {
   -o-background-size: cover;
   -webkit-background-size: cover;
   background-size: cover;
-  background: url(/images/dashboard.jpg) no-repeat center center fixed;
+  background: -webkit-linear-gradient(90deg, #fe8c00 10%, #f83600 90%);
+  /* Chrome 10+, Saf5.1+ */
+  background: -moz-linear-gradient(90deg, #fe8c00 10%, #f83600 90%);
+  /* FF3.6+ */
+  background: -ms-linear-gradient(90deg, #fe8c00 10%, #f83600 90%);
+  /* IE10 */
+  background: -o-linear-gradient(90deg, #fe8c00 10%, #f83600 90%);
+  /* Opera 11.10+ */
+  background: linear-gradient(90deg, #fe8c00 10%, #f83600 90%);
+  /* W3C */
   height: 100%;
   width: 100%;
   color: white;
   font-size: 16px;
 }
 
-/* line 25, ../../resources/assets/main/sass/dashboard.scss */
+/* line 31, ../../resources/assets/main/sass/dashboard.scss */
 .well {
   margin-top: 20px;
   padding: 0px 20px 0px 0px !important;
 }
-/* line 29, ../../resources/assets/main/sass/dashboard.scss */
+/* line 35, ../../resources/assets/main/sass/dashboard.scss */
 .well .col-md-3 {
   background-color: #607D8B;
   overflow: auto;
@@ -24,11 +33,11 @@ html, body {
   margin: 0px 0px 0px 0px;
   padding: 0px 0px 0px 0px;
 }
-/* line 35, ../../resources/assets/main/sass/dashboard.scss */
+/* line 41, ../../resources/assets/main/sass/dashboard.scss */
 .well .col-md-3 ul {
   margin: 0px 0px 0px 0px;
 }
-/* line 39, ../../resources/assets/main/sass/dashboard.scss */
+/* line 45, ../../resources/assets/main/sass/dashboard.scss */
 .well .col-md-3 li a {
   color: white;
 }
@@ -48,28 +57,28 @@ html, body {
 .well .col-md-3 li a:active {
   color: white;
 }
-/* line 43, ../../resources/assets/main/sass/dashboard.scss */
+/* line 49, ../../resources/assets/main/sass/dashboard.scss */
 .well .col-md-3 li a:hover {
   -moz-border-radius: 0px;
   -webkit-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 48, ../../resources/assets/main/sass/dashboard.scss */
+/* line 54, ../../resources/assets/main/sass/dashboard.scss */
 .well .col-md-3 label {
   padding: 5px 5px 5px 5px;
   color: #03A9F4;
 }
-/* line 54, ../../resources/assets/main/sass/dashboard.scss */
+/* line 60, ../../resources/assets/main/sass/dashboard.scss */
 .well .row [class*="col-"] {
   margin-bottom: -99999px;
   padding-bottom: 99999px;
 }
-/* line 59, ../../resources/assets/main/sass/dashboard.scss */
+/* line 65, ../../resources/assets/main/sass/dashboard.scss */
 .well .row {
   overflow: hidden;
 }
 
-/* line 66, ../../resources/assets/main/sass/dashboard.scss */
+/* line 72, ../../resources/assets/main/sass/dashboard.scss */
 .diaryList a {
   color: #263238;
 }

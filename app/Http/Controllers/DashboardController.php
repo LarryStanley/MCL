@@ -14,6 +14,17 @@ class DashboardController extends Controller
 		return view("dashboard/dashboard", ["user" => Auth::user()]);
 	}
 
+	public function showAllDocuments() {
+		$documents = DB::table("document_group")->get();
+
+		foreach ($documents as $key => $value) {
+			$group = DB::table("documents")->where("group_id", $value->id)->get();
+			$documents[$key]->data = $group;
+		}
+
+		return view("dashboard/alldocuments", ["documents" => $documents]);
+	}
+
 	public function showDocument($id) {
 		$data = DB::table("documents")->where("id", $id)->first();
 
@@ -66,8 +77,9 @@ class DashboardController extends Controller
 	public function showDiary($id) {
 		$data = DB::table("diary")->where("id", $id)->first();
 		$data->content = Markdown::parse($data->content);
+		$comments = DB::table("diary_comments")->where("diary_id", $id)->get();
 
-		return view("dashboard/diary", ["user" => Auth::user(), "diary" => $data]);
+		return view("dashboard/diary", ["user" => Auth::user(), "diary" => $data, "comments" => $comments]);
 	}
 
 	public function showEditDiary($id) {
@@ -102,6 +114,23 @@ class DashboardController extends Controller
 			$id = DB::getPdo()->lastInsertId();
 		}
 		return redirect('/dashboard/workerDiary/'.$id);
+	}
+
+	public function postDiaryComment() {
+		DB::table("diary_comments")->insert(array(
+				"diary_id" => Input::get('id'),
+				"comment" => Input::get('comment'),
+				"user_id" => Auth::user()->id,
+				"user_name" => Auth::user()->name,
+				"facebook_id" => Auth::user()->facebook_id
+			));
+
+		return response()->json([
+			"diary_id" => Input::get('id'), 
+			"comment" => Input::get("comment"), 
+			"user_id" => Auth::user()->id, 
+			"user_name" => Auth::user()->name,
+			"fb_id" => Auth::user()->facebook_id]);
 	}
 
 	public function showAnnouncement() {

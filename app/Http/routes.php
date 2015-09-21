@@ -38,9 +38,11 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function() {
 	Route::get('/workerDiary', "DashboardController@showAllWorkerDiary");
 	Route::get('/workerDiary/new', "DashboardController@showNewDiary");
 	Route::post('/workerDiary/new', "DashboardController@postNewDiary");
+	Route::post('/workerDiary/newComment', "DashboardController@postDiaryComment");
 	Route::get('/workerDiary/{id}', "DashboardController@showDiary");
 	Route::get('/workerDiary/edit/{id}', "DashboardController@showEditDiary");
 
+	Route::get('/documents', "DashboardController@showAllDocuments");
 	Route::get('/documents/{id}', "DashboardController@showDocument");
 	Route::get('/documents/edit/{id}', "DashboardController@editDocument");
 	Route::post('/documents/edit', "DashboardController@postDocument");
