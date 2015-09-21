@@ -37,7 +37,7 @@ class ToDoController extends Controller
 			$comments[$key]->comment = Markdown::parse($comments[$key]->comment);
 		}
 
-		return view('/dashboard/todo', ["todo" => $todo, "comments" => $comments]);
+		return view('/dashboard/todo', ["todo" => $todo, "comments" => $comments, "user" => Auth::user()]);
 	}
 
 	public function postComment() {

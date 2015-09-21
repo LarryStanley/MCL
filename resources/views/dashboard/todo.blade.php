@@ -11,7 +11,11 @@
 		</div>
 		<div class="panel-body" id="todolistBody">
 			<?php
-				echo $todo->description;
+				echo '<div id="description">'.$todo->description.'</div>';
+				if ($todo->owner_id == $user->id) {
+					echo '<button class="btn btn-warning pull-right" onclick="editDescription()" id="editDescriptionButton">編輯</button>';
+					echo '<button class="btn btn-warning pull-right" onclick="submitDescription()" style="display: none" id="submitDescriptionButton">送出</button>';
+				}
 			?>
 		</div>
 	</div>
@@ -52,4 +56,21 @@
 		<input name="_token" type="hidden" value="{!! csrf_token() !!}" />
 		<input class="btn btn-info pull-right" value="終結事項" type="submit">
 	</form>
+	<script src="/js/marked.js"></script>
+	<script src="/js/to-markdown.js"></script>
+	<script>
+		function editDescription() {
+			var description = toMarkdown($("#description").html());
+			$("#description").replaceWith('<textarea class="form-control" name="description" id="description" cols="30" rows="10">'+ description +'</textarea>');
+			$("#editDescriptionButton").hide();
+			$("#submitDescriptionButton").show();
+		}
+
+		function submitDescription() {
+			var description = marked($("#description").val());
+			$("#description").replaceWith('<div id="description">'+ description +'</div>');
+			$("#editDescriptionButton").show();
+			$("#submitDescriptionButton").hide();
+		}
+	</script>
 @stop
