@@ -13,7 +13,13 @@
 			<select name="category" id="" class="form-control" style="width: 200px">
 				<?php 
 					foreach ($category as $key => $value) {
-						echo "<option value='".$value->id."'>".$value->group_name."</option>";
+						if (!empty($document)) {
+							if ($document->group_id == $value->id)
+								echo "<option selected value='".$value->id."'>".$value->group_name."</option>";
+							else
+								echo "<option value='".$value->id."'>".$value->group_name."</option>";
+						}else
+							echo "<option value='".$value->id."'>".$value->group_name."</option>";
 					}
 				?>
 			</select>

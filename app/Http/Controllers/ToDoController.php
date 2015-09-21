@@ -12,7 +12,9 @@ class ToDoController extends Controller
 {
 	public function showAllToDo() {
 		$list = DB::table("todo_list")->where("done", 0)->get();
-		return view('/dashboard/todolist', ["list" => $list]);
+		$doneList = DB::table("todo_list")->where("done", true)->get();
+
+		return view('/dashboard/todolist', ["list" => $list, "doneList" => $doneList]);
 	}
 
 	public function postToDo() {
@@ -36,5 +38,33 @@ class ToDoController extends Controller
 		}
 
 		return view('/dashboard/todo', ["todo" => $todo, "comments" => $comments]);
+	}
+
+	public function postComment() {
+		DB::table("todo_comments")->insert(array(
+			"todo_id" => Input::get("id"),
+			"comment" => Input::get("comment"),
+			"user_id" => Auth::user()->id,
+			"user_name" => Auth::user()->name,
+			"facebook_id" => Auth::user()->facebook_id
+		));
+
+		return redirect('/dashboard/todo/'.Input::get("id"));
+	}
+
+	public function closeToDo() {
+		DB::table("todo_list")->where("id", Input::get("id"))->update(array(
+			"done" => true
+		));
+
+		DB::table("todo_comments")->insert(array(
+			"todo_id" => Input::get("id"),
+			"comment" => "<span style='color: #C62828'>此事件已完結</span>",
+			"user_id" => Auth::user()->id,
+			"user_name" => Auth::user()->name,
+			"facebook_id" => Auth::user()->facebook_id
+		));
+
+		return redirect('/dashboard/todo/'.Input::get("id"));
 	}
 }

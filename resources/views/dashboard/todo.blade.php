@@ -39,7 +39,7 @@
 	      <form action="/dashboard/newTodoComment" method="POST">
 				<div class="form-group">
 					<label>評論</label>
-					<textarea name="description" class="form-control" id="description" cols="30" rows="5"></textarea>
+					<textarea name="comment" class="form-control" id="description" cols="30" rows="5"></textarea>
 				</div>
 				<input type="hidden" name="id" value="<?php echo $todo->id; ?>">
 				<input name="_token" type="hidden" value="{!! csrf_token() !!}" />
@@ -47,4 +47,9 @@
 			</form>  
 	    </div>
 	</div>
+	<form action="/dashboard/closeTodo" method="POST">
+		<input type="hidden" name="id" value="<?php echo $todo->id; ?>">
+		<input name="_token" type="hidden" value="{!! csrf_token() !!}" />
+		<input class="btn btn-info pull-right" value="終結事項" type="submit">
+	</form>
 @stop

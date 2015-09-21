@@ -17,6 +17,20 @@
 			</ul>
 		</div>
 	</div>
+	<div class="panel panel-success">
+		<div class="panel-heading">
+			已完成事項
+		</div>
+		<div class="panel-body" id="doneBody">
+			<ul>
+				<?php
+					foreach ($doneList as $key => $value) {
+						echo "<li><del><a href='/dashboard/todo/".$value->id."'>".$value->name."</a></del></li>";
+					}
+				?>
+			</ul>
+		</div>
+	</div>
 	<div class="panel panel-info">
 	    <div class="panel-heading">
 	        <h4>新增待辦事項</h4>
