@@ -13,6 +13,7 @@
 
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+	<script src="/js/emmet.min.js"></script>
 	
 	@yield("head")
 

@@ -34,6 +34,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function() {
 		Route::get('/changeUserGroup/{id}', "DashboardController@changeUserGroupById");
 		Route::post('/changeUserGroup', "DashboardController@postUserGroup");
 	});
+
 	Route::get('/', "DashboardController@index");
 	Route::get('/workerDiary', "DashboardController@showAllWorkerDiary");
 	Route::get('/workerDiary/new', "DashboardController@showNewDiary");
@@ -46,6 +47,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function() {
 	Route::get('/documents/{id}', "DashboardController@showDocument");
 	Route::get('/documents/edit/{id}', "DashboardController@editDocument");
 	Route::post('/documents/edit', "DashboardController@postDocument");
+
+	Route::get('/todo', "ToDoController@showAllToDo");
+	Route::get('/todo/{id}', "ToDoController@showToDo");
+	Route::post('/newTodo', "ToDoController@postToDo");
 
 	Route::get('/driver', "DashboardController@showDrivers");
 	Route::get('/software', "DashboardController@showSoftware");

@@ -6,15 +6,18 @@
 	    	<h3><?php echo $diary->name;?></h3>
 	    </div>
 	    <div class="panel-body">
-	        <?php echo $diary->content;?>
+	        <?php 
+	        	echo $diary->content;
+	        	if ($diary->recordUserId == Auth::user()->id)
+					echo '<a href="/dashboard/workerDiary/edit/'.$diary->id.'" class="btn btn-warning pull-right">編輯日誌</a>';
+	        ?>
 	    </div>
 	    <div class="panel-footer">
-			<?php 
-				echo $diary->recordUserName." 於 ".$diary->recordTime." 編輯";
-
-				if ($diary->recordUserId == Auth::user()->id)
-					echo '<a href="/dashboard/workerDiary/edit/'.$diary->id.'" class="btn btn-warning pull-right">編輯日誌</a>';
-			?>
+	    	<div class="row">
+				<?php 
+					echo '<div class="col-md-1"><img src="http://graph.facebook.com/'.$recordUser->facebook_id.'/picture?type=square" class="img-circle" style="margin-top: 5px"></div><div class="col-md-11">'.$diary->recordUserName."<br>於 ".$diary->recordTime." 編輯</div>";
+				?>
+			</div>
 		</div>
 	</div>
 	<div class="row" style="margin-top: 30px">
@@ -33,7 +36,7 @@
 			?>
 		</div>
 	</div>
-	<div class="panel panel-primary" style="margin-top: 20px;">
+	<div class="panel panel-info" style="margin-top: 20px;">
 	    <div class="panel-heading">
 			<h4>留言</h4>
 	    </div>
@@ -57,7 +60,7 @@
 	                	<div class="col-md-2">
 	                		<input type="hidden" name="id" value="<?php echo $diary->id;?>">
 	        				<input name="_token" type="hidden" value="{!! csrf_token() !!}" />
-			                <input type="submit" class="btn btn-default" value="新增">                		
+			                <input type="submit" class="btn btn-default" value="留言">                		
 	                	</div>
                 	</div>
                 </form>

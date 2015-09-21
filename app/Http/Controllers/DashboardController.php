@@ -36,8 +36,9 @@ class DashboardController extends Controller
 
 	public function editDocument($id) {
 		$data = DB::table("documents")->where("id", $id)->first();
+		$category = DB::table("document_group")->get();
 
-		return view("dashboard/editDocument", ["user" => Auth::user(), "document" => $data]);
+		return view("dashboard/editDocument", ["user" => Auth::user(), "document" => $data, "category" => $category]);
 	}
 
 	public function postDocument() {
@@ -48,14 +49,16 @@ class DashboardController extends Controller
 				"name" => Input::get("name"),
 				"updateTime" => date('Y-m-d H:i:s', time()),
 				"editUserId" => Auth::user()->id,
-				"editUserName" => Auth::user()->name
+				"editUserName" => Auth::user()->name,
+				"group_id" => Input::get("category")
 			));
 		} else {
 			$data = DB::table("documents")->insert(array(
 				"content" => Input::get("content"),
 				"name" => Input::get("name"),
 				"editUserId" => Auth::user()->id,
-				"editUserName" => Auth::user()->name
+				"editUserName" => Auth::user()->name,
+				"group_id" => Input::get("category")
 			));
 
 			$id = DB::getPdo()->lastInsertId();
@@ -65,7 +68,9 @@ class DashboardController extends Controller
 	}
 
 	public function newDocument() {
-		return view("dashboard/editDocument", ["user" => Auth::user()]);
+		$category = DB::table("document_group")->get();
+
+		return view("dashboard/editDocument", ["user" => Auth::user(), "category" => $category]);
 	}
 
 	public function showAllWorkerDiary() {
@@ -78,8 +83,9 @@ class DashboardController extends Controller
 		$data = DB::table("diary")->where("id", $id)->first();
 		$data->content = Markdown::parse($data->content);
 		$comments = DB::table("diary_comments")->where("diary_id", $id)->get();
+		$recordUser = DB::table("users")->where("id", $data->recordUserId)->first();
 
-		return view("dashboard/diary", ["user" => Auth::user(), "diary" => $data, "comments" => $comments]);
+		return view("dashboard/diary", ["user" => Auth::user(), "diary" => $data, "comments" => $comments, "recordUser" => $recordUser]);
 	}
 
 	public function showEditDiary($id) {
