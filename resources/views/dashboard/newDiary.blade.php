@@ -20,10 +20,4 @@
 		日誌支援Markdown語法，Markdown使用方式可參考<a href="http://markdown.tw/" target="_blank">Markdown 語法說明</a><br>
 		也支援html，大家可以多多使用，讓日誌更加漂亮
 	</div>
-	<script>
-		emmet.require('textarea').setup({
-		    pretty_break: true, 
-		    use_tab: true
-		});
-	</script>
 @stop

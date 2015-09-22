@@ -11,7 +11,11 @@ use Markdown;
 class DashboardController extends Controller
 {
 	public function index() {
-		return view("dashboard/dashboard", ["user" => Auth::user()]);
+		$diary = DB::table("diary")->orderBy("id", "desc")->first();
+		$diary->content = Markdown::parse($diary->content);
+		$recordUser = DB::table("users")->where("id", $diary->recordUserId)->first();
+
+		return view("dashboard/dashboard", ["user" => Auth::user(), "diary" => $diary, "recordUser" => $recordUser, "title" => "總覽"]);
 	}
 
 	public function showAllDocuments() {
@@ -22,7 +26,7 @@ class DashboardController extends Controller
 			$documents[$key]->data = $group;
 		}
 
-		return view("dashboard/alldocuments", ["documents" => $documents]);
+		return view("dashboard/alldocuments", ["documents" => $documents, "title" => "MCL相關文件"]);
 	}
 
 	public function showDocument($id) {
@@ -30,7 +34,7 @@ class DashboardController extends Controller
 
 		$content = Markdown::parse($data->content);
 
-		return view("dashboard/documents", ["user" => Auth::user(), "content" => $content, "document" => $data]);
+		return view("dashboard/documents", ["user" => Auth::user(), "content" => $content, "document" => $data, "title" => $data->name]);
 
 	}
 
@@ -76,7 +80,7 @@ class DashboardController extends Controller
 	public function showAllWorkerDiary() {
 		$data = DB::table("diary")->get();
 		$data = array_reverse($data);
-		return view("dashboard/allDiary", ["user" => Auth::user(), "diaries" => $data]);
+		return view("dashboard/allDiary", ["user" => Auth::user(), "diaries" => $data, "title" => "工讀生日誌"]);
 	}
 
 	public function showDiary($id) {
@@ -85,19 +89,19 @@ class DashboardController extends Controller
 		$comments = DB::table("diary_comments")->where("diary_id", $id)->get();
 		$recordUser = DB::table("users")->where("id", $data->recordUserId)->first();
 
-		return view("dashboard/diary", ["user" => Auth::user(), "diary" => $data, "comments" => $comments, "recordUser" => $recordUser]);
+		return view("dashboard/diary", ["user" => Auth::user(), "diary" => $data, "comments" => $comments, "recordUser" => $recordUser, "title" => $data->name]);
 	}
 
 	public function showEditDiary($id) {
 		$diary = DB::table("diary")->where("id", $id)->first();
 		if (Auth::user()->id == $diary->recordUserId)
-			return view("dashboard/newDiary", ["user" => Auth::user(), "diary" => $diary]);
+			return view("dashboard/newDiary", ["user" => Auth::user(), "diary" => $diary, "title" => "編輯日誌"]);
 		else
 			return redirect("/dashboard/workerDiary");
 	}
 
 	public function showNewDiary() {
-		return view("dashboard/newDiary", ["user" => Auth::user()]);
+		return view("dashboard/newDiary", ["user" => Auth::user(), "title" => "新增日誌"]);
 	}
 
 	public function postNewDiary() {

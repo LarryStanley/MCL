@@ -5,7 +5,7 @@
 	<hr>
 	<div class="panel panel-primary">
 	    <div class="panel-heading">
-	        <h3 class="panel-title"><h2>公告</h2></h3>
+	        <h2 class="panel-title">公告</h2>
 	    </div>
 	    <div class="panel-body">
 	        <ul>
@@ -19,25 +19,66 @@
 			</ul>
 	    </div>
 	</div>
-	<div class="panel panel-material-indigo-500">
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			值班狀況
+		</div>
+		<div class="panel-body">
+			<div class="row text-center">
+				<div class="col-md-4">
+					上一班為
+				</div>
+				<div class="col-md-4">
+					這一班為
+				</div>
+				<div class="col-md-4">
+					下一班為
+				</div>
+			</div>
+			<p>這學期班表可於<a href="/dashboard/documents/8">班表</a>查看</p>
+		</div>
+	</div>
+	<div class="panel panel-material-blue-500">
 	    <div class="panel-heading">
-	        <h3 class="panel-title"><h2>代辦事項</h2></h3>
+	        <h2 class="panel-title">上一班日誌</h2>
 	    </div>
 	    <div class="panel-body">
 	        <ul>
 				<?php
-					$list = DB::table("todo_list")->where("done", false)->get();
-					$list = array_reverse($list);
-					foreach ($list as $key => $value) {
-						echo "<li><a href='/dashboard/todo/".$value->id."'>".$value->name."</a></li>";
-					}
+					echo "<a href='/dashboard/workerDiary/".$diary->id."'><h4>".$diary->name."</h4></a>";
+					echo "<p>".$diary->content."</p>";
 				?>
 			</ul>
 	    </div>
+	    <div class="panel-footer">
+	    	<div class="row">
+				<?php 
+					echo '<div class="col-md-1"><img src="http://graph.facebook.com/'.$recordUser->facebook_id.'/picture?type=square" class="img-circle" style="margin-top: 5px"></div><div class="col-md-11">'.$diary->recordUserName."<br>於 ".$diary->recordTime." 編輯</div>";
+				?>
+			</div>
+	    </div>
 	</div>
-	<div class="panel panel-material-light-blue-700">
+	<div class="panel panel-material-indigo-500">
+	    <div class="panel-heading">
+	        <h2 class="panel-title">被指派待辦事項</h2>
+	    </div>
+	    <div class="panel-body">
+	        <ul>
+				<?php
+					$assignMission = DB::table("todo_assigners")->where("done", false)->where("user_id", Auth::user()->id)->get();
+					$showTodo = array();
+					foreach ($assignMission as $key => $value) {
+						$todo = DB::table("todo_list")->where("done", false)->where("id", $value->todo_id)->first();
+						echo "<li><a href='/dashboard/todo/".$todo->id."'>".$todo->name."</a></li>";
+						array_push($showTodo, $todo->id);
+					}
+				?>	
+			</ul>
+	    </div>
+	</div>
+	<div class="panel panel-material-deep-purple-500">
 		<div class="panel-heading">
-			<h3>目前天氣</h3>
+			<h2 class="panel-title">目前天氣</h2>
 		</div>
 		<div class="panel-body" id="weather">
 			

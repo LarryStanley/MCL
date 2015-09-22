@@ -51,4 +51,10 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		emmet.require('textarea').setup({
+		    pretty_break: true, 
+		    use_tab: true
+		});
+	</script>
 @stop

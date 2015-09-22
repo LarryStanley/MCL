@@ -53,6 +53,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function() {
 	Route::post('/newTodo', "ToDoController@postToDo");
 	Route::post('/newTodoComment', "ToDoController@postComment");
 	Route::post('/closeTodo', "ToDoController@closeToDo");
+	Route::post('/newToDoAssign', "ToDoController@postNewAssign");
+	Route::post('/todoComplete', "ToDoController@todoComplete");
 
 	Route::get('/driver', "DashboardController@showDrivers");
 	Route::get('/software', "DashboardController@showSoftware");

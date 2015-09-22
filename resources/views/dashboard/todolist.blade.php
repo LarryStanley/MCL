@@ -9,11 +9,31 @@
 		</div>
 		<div class="panel-body" id="todolistBody">
 			<ul>
-				<?php
-					foreach ($list as $key => $value) {
-						echo "<li><a href='/dashboard/todo/".$value->id."'>".$value->name."</a></li>";
-					}
-				?>
+				<li>
+					被指派
+					<ul>
+						<?php
+							$assignMission = DB::table("todo_assigners")->where("done", false)->where("user_id", Auth::user()->id)->get();
+							$showTodo = array();
+							foreach ($assignMission as $key => $value) {
+								$todo = DB::table("todo_list")->where("done", false)->where("id", $value->todo_id)->first();
+								echo "<li><a href='/dashboard/todo/".$todo->id."'>".$todo->name."</a></li>";
+								array_push($showTodo, $todo->id);
+							}
+						?>	
+					</ul>
+				</li>
+				<li>
+					其他事項
+					<ul>
+						<?php
+							foreach ($list as $key => $value) {
+								if (!in_array($value->id, $showTodo))
+									echo "<li><a href='/dashboard/todo/".$value->id."'>".$value->name."</a></li>";
+							}
+						?>
+					</ul>
+				</li>
 			</ul>
 		</div>
 	</div>

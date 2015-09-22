@@ -45,7 +45,7 @@
 	        	<?php 
 	        		foreach ($comments as $key => $value) {
 	        			echo '<div class="row"><div class="col-md-2"><img src="http://graph.facebook.com/'.$value->facebook_id.'/picture?type=square" class="img-circle" style="margin-top: 5px"></div>';
-	        			echo '<div class="col-md-10" style="vertical-align: center">'.$value->user_name.'<br>'.$value->comment.'</div></div>';
+	        			echo '<div class="col-md-10" style="vertical-align: center"><a href="http://www.facebook.com/'.$value->facebook_id.'" target="_blank">'.$value->user_name.'</a><br>'.$value->comment.'</div></div>';
 	        		}
 	        	?>
 	        </div>
