@@ -35,4 +35,20 @@
 			</ul>
 	    </div>
 	</div>
+	<div class="panel panel-material-light-blue-700">
+		<div class="panel-heading">
+			<h3>目前天氣</h3>
+		</div>
+		<div class="panel-body" id="weather">
+			
+		</div>
+		<div class="panel-footer">有溫度超爽der</div>
+	</div>
+	<script>
+		$.getJSON("https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20woeid%20%3D%202298866)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys", function(data) {
+			console.log(data);
+			var temp = (data.query.results.channel.item.condition.temp - 32) * 5 /9;
+			$("#weather").append("溫度：" + temp);
+		});
+	</script>
 @stop
