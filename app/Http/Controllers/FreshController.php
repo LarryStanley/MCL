@@ -74,4 +74,10 @@ class FreshController extends Controller
 
 		return "success";
 	}
+
+	public function freshTimeApi() {
+		$result = DB::table("fresh_will")->where("user_id", Auth::user()->id)->get();
+
+		return response()->json($result);
+	}
 }
