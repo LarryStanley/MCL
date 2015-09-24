@@ -5,6 +5,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Input;
 use Auth;
+use Hash;
 use Session;
 
 class FreshController extends Controller
@@ -79,5 +80,28 @@ class FreshController extends Controller
 		$result = DB::table("fresh_will")->where("user_id", Auth::user()->id)->get();
 
 		return response()->json($result);
+	}
+
+	public function createNewUserByFile() {
+		$file = file_get_contents(Input::file('users'));
+		$lines = explode(PHP_EOL, $file);
+		$array = array();
+		foreach ($lines as $line) {
+		    $user = str_getcsv($line);
+		    if (count($user) == 2) {
+		    	$id = DB::table('users')->insertGetId(array(
+			    		"email" => $user[0]."@cc.ncu.edu.tw",
+			    		"password" => Hash::make($user[0]),
+			    		"facebook_id" => "1000000000",
+			    		"name" => $user[1]
+		    		));
+		    	DB::table("users_group")->insert(array(
+		    		"user_id" => $id, 
+		    		"group_name" => "fresh"
+	    		));
+		    }
+		}
+
+		return redirect("/dashboard/changeUserGroup");
 	}
 }

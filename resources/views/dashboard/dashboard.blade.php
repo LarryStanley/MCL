@@ -10,15 +10,28 @@
 	    <div class="panel-body">
 	        <ul>
 				<?php
-					$announcement = DB::table("announcement")->where("show", true)->get();
-					$announcement = array_reverse($announcement);
-					foreach ($announcement as $key => $value) {
-						echo "<li>".$value->content."<span style='float: right'>".$value->recordUserName."</span></li>";
+					$workerGroup = DB::table("users_group")->where("group_name", "worker")->where("user_id", Auth::user()->id)->first();
+					if ($workerGroup) {
+						$announcement = DB::table("announcement")->where("show", true)->where("for_group", "worker")->get();
+						$announcement = array_reverse($announcement);
+						foreach ($announcement as $key => $value) {
+							echo "<li>".$value->content."<span style='float: right'>".$value->recordUserName."</span></li>";
+						}
+					}
+
+					$freshGroup = DB::table("users_group")->where("group_name", "fresh")->where("user_id", Auth::user()->id)->first();
+					if ($freshGroup) {
+						$announcement = DB::table("announcement")->where("show", true)->where("for_group", "fresh")->get();
+						$announcement = array_reverse($announcement);
+						foreach ($announcement as $key => $value) {
+							echo "<li>".$value->content."<span style='float: right'>".$value->recordUserName."</span></li>";
+						}
 					}
 				?>
 			</ul>
 	    </div>
 	</div>
+	@if ($workerGroup)
 	<div class="panel panel-primary">
 		<div class="panel-heading">
 			值班狀況
@@ -92,4 +105,5 @@
 			$("#weather").append("溫度：" + temp);
 		});
 	</script>
+	@endif
 @stop

@@ -37,9 +37,8 @@
 						if ($group) {
 							echo '
 							<li><label for="">管理、設定</label></li>
-							<li><label>使用者管理</label></li>
 							<li><a href="/dashboard/announcement">新增公告</a></li>
-							<li><a href="/dashboard/changeUserGroup">使用者權限</a></li>';		
+							<li><a href="/dashboard/changeUserGroup">使用者管理</a></li>';		
 						}
 					?>
 					<li><a href="/auth/logout">登出</a></li>

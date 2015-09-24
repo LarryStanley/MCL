@@ -34,6 +34,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function() {
 		Route::get('/changeUserGroup', "DashboardController@changeUserGroup");
 		Route::get('/changeUserGroup/{id}', "DashboardController@changeUserGroupById");
 		Route::post('/changeUserGroup', "DashboardController@postUserGroup");
+		Route::post('/createNewUserByFile', "FreshController@createNewUserByFile");
 	});
 
 	Route::get('/', "DashboardController@index");
