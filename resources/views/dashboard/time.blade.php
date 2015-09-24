@@ -27,7 +27,7 @@
 			</tbody>
 		</table>
 		<?php echo "{{ freshTime.status() }}";?><br>
-		您必須點選儲存才能進行分發喔！
+		<sapn style="color:#F44336">您必須點選儲存才能進行分發喔！</sapn>
 		<input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
 		<p id="message"></p>
 		<button class="btn btn-info pull-right" ng-click="freshTime.submit()">儲存</button>

@@ -2,6 +2,7 @@ angular.module('freshTimeApp', [])
 	.controller('FreshTimeController', function($scope, $http) {
 		var time = this;
 		var classValue = ["1", "2", "3", "4", "Z", "5", "6", "7", "8", "9", "A", "B", "C"];
+		time.notOpen = ["13", "14", "44", "23", "24", "55", "56", "57", "58", "59", "5A", "5B", "5C"];
 		time.classTable = [];
 		$.getJSON('/fresh/timeJson', function(oldTime) {
 			for (var j = 0; j < classValue.length; j++) {
