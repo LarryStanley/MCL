@@ -20,8 +20,13 @@
 			<tbody>
 				<tr ng-repeat="(index, row) in freshTime.classTable">
 					<td><?php echo "{{ freshTime.duration[index] }}" ?></td>
-					<td ng-repeat="value in row">
-						<input type="checkbox" ng-model="value.checked">
+					<td ng-repeat="value in row" width="100px">
+						<div ng-if="checkOpen(value.classValue)">
+							<input type="checkbox" ng-model="value.checked">
+						</div>
+						<div ng-if="!checkOpen(value.classValue)">
+							<span style="color: #FF5722;">不開放</span>
+						</div>
 					</td>
 				</tr>
 			</tbody>

@@ -236,6 +236,6 @@ class DashboardController extends Controller
 	}
 
 	public function freshTime() {
-		return view('/dashboard/time');
+		return view('/dashboard/time', ["title" => "大一勞服時間填寫"]);
 	}
 }
