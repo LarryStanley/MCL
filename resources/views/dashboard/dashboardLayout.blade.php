@@ -8,7 +8,7 @@
 	<div class="container">
 		<div class="well">
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-md-3 col-sm-3 col-xs-3">
 				<ul class="nav nav-pills nav-stacked">
 					<li><a href="/dashboard">總覽</a></li>
 					<?php
@@ -45,7 +45,7 @@
 					<li><a href="/auth/logout">登出</a></li>
 				</ul>
 				</div>
-				<div class="col-md-9">
+				<div class="col-md-9 col-sm-9 col-xs-9">
 					@yield("dashboardContent")
 				</div>
 			</div>

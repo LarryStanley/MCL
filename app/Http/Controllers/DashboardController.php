@@ -236,7 +236,7 @@ class DashboardController extends Controller
 	}
 
 	public function freshTime() {
-		return view('/dashboard/time', ["title" => "時間填寫"]);
+		return view('/dashboard/time', ["title" => "大一勞服時間填寫"]);
 	}
 
 	public function mangeFresh() {

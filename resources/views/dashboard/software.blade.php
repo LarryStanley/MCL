@@ -13,7 +13,7 @@
 		<li>
 			Matlab
 			<ul>
-				<li><a href="/downloads/matlab2014">2014</a></li>
+				<li><a href="/downloads/MATLAB.zip">2014</a></li>
 			</ul>
 		</li>
 	</ul>

@@ -2,7 +2,7 @@ angular.module('freshTimeApp', [])
 	.controller('FreshTimeController', function($scope, $http) {
 		var time = this;
 		var classValue = ["1", "2", "3", "4", "Z", "5", "6", "7", "8", "9", "A", "B", "C"];
-		time.notOpen = ["13", "14", "44", "23", "24", "55", "56", "57", "58", "59", "5A", "5B", "5C"];
+		var notOpen = ["13", "14", "44", "23", "24", "55", "56", "57", "58", "59", "5A", "5B", "5C"];
 		time.classTable = [];
 		$.getJSON('/fresh/timeJson', function(oldTime) {
 			for (var j = 0; j < classValue.length; j++) {
@@ -55,10 +55,21 @@ angular.module('freshTimeApp', [])
 				console.log(result);
 				$.post("/fresh/receiveWill", { will: result, _token : $("#token").val()}, function(data) {
 					console.log(data);
-					$("#message").append("<span class='animated fadeIn'>已成功儲存，您可於9/24時回來察看分發結果</span>");
+					$("#message").append("<span class='animated fadeIn' style='color: #1A237E'>已成功儲存，您可於9/24時回來察看分發結果</span>");
 				});
 			} else {
 				$("#message").append("<span class='animated fadeIn'>請選足超過4個時段喔！！</span>");
 			}
+		};
+
+		$scope.checkOpen = function(currentClassValue) {
+			var open = true;
+			angular.forEach(notOpen, function(value, index) {
+				if (value == currentClassValue) {
+					open = false;
+				}
+			});
+
+			return open;
 		};
 	});
