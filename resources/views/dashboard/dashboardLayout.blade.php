@@ -37,6 +37,7 @@
 						if ($group) {
 							echo '
 							<li><label for="">管理、設定</label></li>
+							<li><a href="/dashboard/freshManage">勞服管理</a></li>
 							<li><a href="/dashboard/announcement">新增公告</a></li>
 							<li><a href="/dashboard/changeUserGroup">使用者管理</a></li>';		
 						}

@@ -236,6 +236,21 @@ class DashboardController extends Controller
 	}
 
 	public function freshTime() {
-		return view('/dashboard/time');
+		return view('/dashboard/time', ["title" => "時間填寫"]);
+	}
+
+	public function mangeFresh() {
+
+		// get not register people
+		$freshData = DB::table("users_group")->where('group_name', 'fresh')->get();
+		$notRegister = array();
+		foreach ($freshData as $key => $value) {
+			$will = DB::table("fresh_will")->where("user_id", $value->user_id)->get();
+			if (empty($will)) {
+				array_push($notRegister, $value->user_id);
+			}
+		}
+
+		return view('/dashboard/mangeFresh', ["notRegister" => $notRegister, "title" => "勞服管理"]);
 	}
 }
