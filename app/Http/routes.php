@@ -19,6 +19,8 @@ Route::get('/home', function () {
 	return redirect('/dashboard');
 });
 
+Route::get('/class', "HomeController@showClass");
+
 Route::get('/fresh', "FreshController@index");
 Route::get('/fresh/currentStatus', "FreshController@returnStatus");
 Route::post('/fresh/signUp', "FreshController@signUp");
