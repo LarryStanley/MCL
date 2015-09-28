@@ -15,7 +15,21 @@ class DashboardController extends Controller
 		$diary->content = Markdown::parse($diary->content);
 		$recordUser = DB::table("users")->where("id", $diary->recordUserId)->first();
 
-		return view("dashboard/dashboard", ["user" => Auth::user(), "diary" => $diary, "recordUser" => $recordUser, "title" => "總覽"]);
+		// get current time
+		$dayWeek = date('w', time());
+		$hour = (int)date('H', time());
+		$hour = (string)$hour;
+		$classValue = ["8" => "1", "9" => "2", "10" => "3", "4" => "11", "12" => "Z", "13" => "5", "14" => "6", "15" => "7", "16" => "8", "17" => "9", "18" => "A", "19" => "B", "20" => "C"];
+		if (!empty($classValue[$hour]))
+			$currentClass = $classValue[$hour];
+		else
+			$currentClass = "1";
+		if ($dayWeek == 6 || $dayWeek == 7)
+			$dayWeek = 1;
+
+		$currentTimeValue = $dayWeek.$currentClass;
+
+		return view("dashboard/dashboard", ["user" => Auth::user(), "diary" => $diary, "recordUser" => $recordUser, "title" => "總覽", "currentTimeValue" => $currentTimeValue]);
 	}
 
 	public function showAllDocuments() {
@@ -81,6 +95,18 @@ class DashboardController extends Controller
 		$data = DB::table("diary")->get();
 		$data = array_reverse($data);
 		return view("dashboard/allDiary", ["user" => Auth::user(), "diaries" => $data, "title" => "工讀生日誌"]);
+	}
+
+	public function showAllWorkerDiaryByPage($page) {
+		$data = DB::table("diary")->get();
+		$data = array_reverse($data);
+		$allPageCount = (count($data)/5 + 1);
+		if ($page > (count($data)/5 + 1))
+			return view('/errors/404');
+		else {
+			$data = array_slice($data, ($page - 1)*5, $page*5);
+			return view("dashboard/allDiary", ["user" => Auth::user(), "diaries" => $data, "page" => $page, "allPageCount" => $allPageCount,"title" => "工讀生日誌"]);
+		}
 	}
 
 	public function showDiary($id) {

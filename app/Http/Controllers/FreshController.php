@@ -104,4 +104,18 @@ class FreshController extends Controller
 
 		return redirect("/dashboard/changeUserGroup");
 	}
+
+	public function saveAllocate() {
+		$result = json_decode(Input::get('result'));
+		DB::table('class')->where("type", "fresh")->delete();
+		foreach ($result as $key => $value) {
+			DB::table('class')->insert(array(
+				"user_id" => $value->user_id,
+				"time_id" => strtoupper($value->class_value),
+				"type" => "fresh"
+			));
+		}
+
+		return "success";
+	}
 }

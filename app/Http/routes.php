@@ -39,10 +39,12 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function() {
 		Route::post('/createNewUserByFile', "FreshController@createNewUserByFile");
 
 		Route::get('/freshManage', "DashboardController@mangeFresh");
+		Route::post('/saveAllocate', "FreshController@saveAllocate");
 	});
 
 	Route::get('/', "DashboardController@index");
 	Route::get('/workerDiary', "DashboardController@showAllWorkerDiary");
+	Route::get('/workerDiary/page/{page}', "DashboardController@showAllWorkerDiaryByPage");
 	Route::get('/workerDiary/new', "DashboardController@showNewDiary");
 	Route::post('/workerDiary/new', "DashboardController@postNewDiary");
 	Route::post('/workerDiary/newComment', "DashboardController@postDiaryComment");

@@ -21,6 +21,10 @@
 			color: #33691E;
 		}
 		
+		.fresh {
+			color: #0097A7;
+		}
+
 		#note {
 			text-align: left;
 		}
@@ -66,7 +70,7 @@
 												$user = DB::table('users')->where("id", $class->user_id)->first();
 												echo "<span class='".$class->type."' title='".$class->type."'>".$user->name."</span><br>";
 											} else {
-												echo "<sapn class='".$class->type."' title='".$class->type."'>".$class->name."</span><br>";
+												echo "<span class='".$class->type."' title='".$class->type."'>".$class->name."</span><br>";
 											}
 										}
 									} else {
@@ -81,8 +85,11 @@
 				</tbody>
 			</table>
 			<div id="note">
-				<div class="worker">藍色為工讀生</div>
-				<div class="class">綠色為教室上課課程</div>
+				<ul>
+					<li class="worker">藍色為工讀生</li>
+					<li class="fresh">藍綠色為勞服生</li>
+					<li class="class">綠色為教室上課課程</li>
+				</ul>
 			</div>
 		</div>
 	</div>

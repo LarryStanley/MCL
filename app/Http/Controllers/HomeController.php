@@ -11,6 +11,6 @@ use Markdown;
 class HomeController extends Controller
 {
 	public function showClass() {
-		return view("/class");
+		return view("/class", ["title" => "104上學期MCL使用表"]);
 	}
 }

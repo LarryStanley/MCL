@@ -6,7 +6,7 @@
 			vertical-align: middle !important;
 		}
 	</style>
-	<h1>勞服管理</h1>
+	<h1>勞服分發管理</h1>
 	<div class="panel panel-primary">
 	    <div class="panel-heading">
 	        <h3 class="panel-title">尚未填寫志願的人</h3>
@@ -30,7 +30,7 @@
 	    <div class="panel-heading">
 	        <h3 class="panel-title">預排班表</h3>
 	    </div>
-	    <div class="panel-body">
+	    <div class="panel-body" id="allocateBody">
 			<table class="table table-bordered" style="text-align: center; valign: middle;">
 				<thead>
 					<tr>
@@ -116,10 +116,21 @@
 				}
 				echo "<br>共 ".$counter." 人";
 			?>
-			<form action="">
-				<input type="hidden" value="<?php echo json_encode($result) ;?>">
+			<form action="/dashboard/saveAllocate" method="POST" id="saveRegisterForm">
+				<input type="hidden" value='<?php echo json_encode($result) ;?>' name="result" id="result">
+				<input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
 				<input type="submit" class="btn btn-info pull-right" value="儲存目前結果">
 			</form>
+			<script>
+				$("#saveRegisterForm").submit(function(data) {
+					$("#saveMessage").remove();
+					$.post("/dashboard/saveAllocate", $("#saveRegisterForm").serialize(), function(response) {
+						$("#allocateBody").append("<div class='animated fadeIn' style='color: #F44336' id='saveMessage'>已儲存</div>");
+					});
+					event.preventDefault();
+					return false;
+				});
+			</script>
 	    </div>
 	</div>
 @stop

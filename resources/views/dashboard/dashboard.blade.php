@@ -42,13 +42,19 @@
 					上一班為
 				</div>
 				<div class="col-md-4">
-					這一班為
+					這一班為<br>
+					<?php 
+						$data = DB::table('class')->where("time_id", $currentTimeValue)->where("type", "worker")->first();
+						$user = DB::table("users")->where("id", $data->user_id)->first();
+						echo '<a href="http://www.facebook.com/'.$user->facebook_id.'" target="_blank"><img src="http://graph.facebook.com/'.$user->facebook_id.'/picture?type=square" class="img-circle" style="margin-top: 5px"><br>';
+						echo $user->name.'</a>';
+					?>
 				</div>
 				<div class="col-md-4">
 					下一班為
 				</div>
 			</div>
-			<p>這學期班表可於<a href="/dashboard/documents/8">班表</a>查看</p>
+			<p class="pull-right">這學期班表可於<a href="/dashboard/documents/8">班表</a>查看</p>
 		</div>
 	</div>
 	<div class="panel panel-material-blue-500">
