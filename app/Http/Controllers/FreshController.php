@@ -18,24 +18,55 @@ class FreshController extends Controller
 		$now = date('H:i:s', time());
 		$minute = date('i', time());
 
-		$signData = DB::table("signUpData")->whereBetween('signTime', array(date('Y-m-d 00:00:00', time()), date('Y-m-d 23:59:59', time())))->where("userId", "2")->first();
+		// get current time
+		$dayWeek = date('w', time());
+		$hour = (int)date('H', time());
+		$hour = (string)$hour;
+		$classValue = ["8" => "1", "9" => "2", "10" => "3", "4" => "11", "12" => "Z", "13" => "5", "14" => "6", "15" => "7", "16" => "8", "17" => "9", "18" => "A", "19" => "B", "20" => "C"];
+		if (!empty($classValue[$hour]))
+			$currentClass = $classValue[$hour];
+		else
+			$currentClass = "1";
+		if ($dayWeek == 6 || $dayWeek == 7)
+			$dayWeek = 1;
+		$currentTimeValue = $dayWeek.$currentClass;
 
-		$signTime = '';
-		$signStatus = '';
-		if ($signData) {
-			$status = "signed";
-			$signTime = $signData->signTime;
-			$signStatus = $signData->status;
-		} else {
-			if ($minute > 20) {
-				$status = "absenteeism";
-			}else if ($minute > 5) {
-				$status = "late";
-			} else {
-				$status = "notSign";
+		$freshPeopleId = DB::table("class")->where("type", "fresh")->where("time_id", $currentTimeValue)->get();
+		$fresh = array();
+		if ($freshPeopleId) {
+			$freshWorks = DB::table("fresh_works")->where("time_id", $currentTimeValue)->get();
+			foreach ($freshPeopleId as $key => $value) {
+				$signData = DB::table("signUpData")->whereBetween('signTime', array(date('Y-m-d 00:00:00', time()), date('Y-m-d 23:59:59', time())))->where("userId", $value->user_id)->first();
+
+				$data = DB::table('users')->where("id", $value->user_id)->first();
+				$data->work = $freshWorks[$key]->work;
+
+				$signTime = '';
+				$signStatus = '';
+				if ($signData) {
+					$status = "signed";
+					$signTime = $signData->signTime;
+					$signStatus = $signData->status;
+				} else {
+					if ($minute > 20) {
+						$status = "absenteeism";
+					}else if ($minute > 5) {
+						$status = "late";
+					} else {
+						$status = "notSign";
+					}
+				}
+
+				$data->status = $status;
+				$data->signTime = $signTime;
+				$data->signStatus = $signStatus;
+
+				array_push($fresh, $data);
 			}
 		}
-		$data = ["status" => $status, "signStatus" => $signStatus, "currentTime" => $now, "signTime" => $signTime];
+
+		$now = "02:03:30";
+		$data = [ "currentTime" => $now, "freshPeople" => $fresh];
 
 		return response()->json($data);
 	}
@@ -48,12 +79,12 @@ class FreshController extends Controller
 		} else if ($minute > 4) {
 			$status = "late";
 			DB::table("signUpData")->insert(
-				array("status" => "late", "userId" => 2)
+				array("status" => "late", "userId" => Input::get("user_id"))
 			);
 		} else {
 			$status = "ok";
 			DB::table("signUpData")->insert(
-				array("status" => "ok", "userId" => 2)
+				array("status" => "ok", "userId" => Input::get("user_id"))
 			);
 		}
 
