@@ -17,7 +17,7 @@
 							echo '
 							<li><label for="">工讀生專區</label></li>
 							<li><a href="/dashboard/workerDiary/new">新增日誌</a></li>
-							<li><a href="/dashboard/workerDiary">工讀生日誌</a></li>
+							<li><a href="/dashboard/workerDiary/page/1">工讀生日誌</a></li>
 							<li><a href="/dashboard/todo">待辦事項</a></li>';
 							echo "<li><label>MCL相關文件</label></li>
 								  <li><a href='/dashboard/documents'>查看文件</a></li>";

@@ -86,10 +86,14 @@
 				<?php
 					$assignMission = DB::table("todo_assigners")->where("done", false)->where("user_id", Auth::user()->id)->get();
 					$showTodo = array();
-					foreach ($assignMission as $key => $value) {
-						$todo = DB::table("todo_list")->where("done", false)->where("id", $value->todo_id)->first();
-						echo "<li><a href='/dashboard/todo/".$todo->id."'>".$todo->name."</a></li>";
-						array_push($showTodo, $todo->id);
+					if (!empty($assignMission)) {
+						foreach ($assignMission as $key => $value) {
+							$todo = DB::table("todo_list")->where("done", false)->where("id", $value->todo_id)->first();
+							if ($todo) {
+								echo "<li><a href='/dashboard/todo/".$todo->id."'>".$todo->name."</a></li>";
+								array_push($showTodo, $todo->id);
+							}
+						}
 					}
 				?>	
 			</ul>

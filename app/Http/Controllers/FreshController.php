@@ -65,7 +65,6 @@ class FreshController extends Controller
 			}
 		}
 
-		$now = "02:03:30";
 		$data = [ "currentTime" => $now, "freshPeople" => $fresh];
 
 		return response()->json($data);
