@@ -22,7 +22,7 @@ class FreshController extends Controller
 		$dayWeek = date('w', time());
 		$hour = (int)date('H', time());
 		$hour = (string)$hour;
-		$classValue = ["8" => "1", "9" => "2", "10" => "3", "4" => "11", "12" => "Z", "13" => "5", "14" => "6", "15" => "7", "16" => "8", "17" => "9", "18" => "A", "19" => "B", "20" => "C"];
+		$classValue = ["8" => "1", "9" => "2", "10" => "3", "11" => "4", "12" => "Z", "13" => "5", "14" => "6", "15" => "7", "16" => "8", "17" => "9", "18" => "A", "19" => "B", "20" => "C"];
 		if (!empty($classValue[$hour]))
 			$currentClass = $classValue[$hour];
 		else
@@ -65,7 +65,7 @@ class FreshController extends Controller
 			}
 		}
 
-		$data = [ "currentTime" => $now, "freshPeople" => $fresh];
+		$data = [ "currentTime" => $now, "freshPeople" => $fresh, "currentTimeValue" => $currentTimeValue];
 
 		return response()->json($data);
 	}

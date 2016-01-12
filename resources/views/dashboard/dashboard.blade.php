@@ -45,9 +45,11 @@
 					這一班為<br>
 					<?php 
 						$data = DB::table('class')->where("time_id", $currentTimeValue)->where("type", "worker")->first();
-						$user = DB::table("users")->where("id", $data->user_id)->first();
-						echo '<a href="http://www.facebook.com/'.$user->facebook_id.'" target="_blank"><img src="http://graph.facebook.com/'.$user->facebook_id.'/picture?type=square" class="img-circle" style="margin-top: 5px"><br>';
-						echo $user->name.'</a>';
+						if ($data) {
+							$user = DB::table("users")->where("id", $data->user_id)->first();
+							echo '<a href="http://www.facebook.com/'.$user->facebook_id.'" target="_blank"><img src="http://graph.facebook.com/'.$user->facebook_id.'/picture?type=square" class="img-circle" style="margin-top: 5px"><br>';
+							echo $user->name.'</a>';
+						}
 					?>
 				</div>
 				<div class="col-md-4">
